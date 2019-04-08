@@ -1,0 +1,11 @@
+{
+    "linters": {
+        "*.+(js|jsx|ts|tsx)": [
+            "yarn lint"
+        ],
+        "*.+(js|jsx|json|ts|tsx|md)": [
+            "yarn prettier --write",
+            "git add"
+        ]
+    }
+}
