@@ -1,23 +1,20 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 
-const Title = styled.h1`
+import {TextField} from 'components/ui/common'
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
     background-color: ${(props) => props.theme.palette.primary};
 `
 
 class App extends Component {
-    _handleOnClick = (text: 'hello, world!--' | '123') => {
-        console.log(text)
-        console.log(text)
-    }
-
     render = () => {
         return (
-            <div className="App">
-                <Title onClick={() => this._handleOnClick('hello, world!--')}>
-                    Hello, World!
-                </Title>
-            </div>
+            <Container>
+                <TextField placeholder="Start typing" />
+            </Container>
         )
     }
 }
