@@ -1,23 +1,19 @@
-const path = require('path');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+import path from 'path'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
-module.exports = {
+export default {
     entry: './src/index.tsx',
     mode: 'development',
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
+                test: /\.(js|ts|tsx)$/,
                 exclude: /(node_modules)/,
                 use: 'babel-loader',
             },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
-            },
         ],
     },
-    resolve: {extensions: ['.js', '.ts', '.tsx', '.css']},
+    resolve: {extensions: ['.js', '.ts', '.tsx']},
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
@@ -29,4 +25,4 @@ module.exports = {
         publicPath: 'http://localhost:8080/dist/',
     },
     plugins: [new ForkTsCheckerWebpackPlugin()],
-};
+}

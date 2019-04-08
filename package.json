@@ -6,10 +6,10 @@
     "scripts": {
         "lint": "eslint \"src/**/*\"",
         "prettier": "prettier \"**/*.+(js|jsx|json|ts|tsx|md)\"",
-        "prettier:validate": "npm run lint && npm run prettier -- --list-different && npm run check-types",
-        "prettier:format": "npm run prettier -- --write",
+        "prettier:validate": "yarn lint && yarn prettier --list-different && yarn check-types",
+        "prettier:format": "yarn prettier --write",
         "check-types": "tsc",
-        "check-types:watch": "yarn check-types -- --watch",
+        "check-types:watch": "yarn check-types --watch",
         "dev": "webpack-dev-server --mode development & yarn check-types:watch",
         "build:js": "webpack --mode=production",
         "build:types": "tsc --emitDeclarationOnly",
@@ -55,6 +55,8 @@
         "webpack-dev-server": "^3.1.14"
     },
     "dependencies": {
+        "@babel/register": "^7.4.0",
+        "@babel/runtime": "^7.4.3",
         "react": "^16.8.1",
         "react-dom": "^16.8.1",
         "styled-components": "^4.2.0"

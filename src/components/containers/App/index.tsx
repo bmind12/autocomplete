@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import './styles'
 
 const Title = styled.h1`
     background-color: ${(props) => props.theme.palette.primary};
