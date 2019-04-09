@@ -1,5 +1,6 @@
 import React, {
     FunctionComponent,
+    KeyboardEvent,
     SyntheticEvent,
     useEffect,
     useRef,
@@ -15,28 +16,26 @@ export const Input = styled.input`
     font-family: inherit;
     font-size: ${(props) => props.theme.text.size.default};
     border-radius: 8px;
-    background-color: ${(props) => props.theme.palette.secondary};
     :focus {
         border: 2px solid ${(props) => props.theme.palette.primary};
         outline: none;
     }
-    ::placeholder {
-        color: ${(props) => props.theme.palette.secondary};
-    }
 `
 
-type Props = {
+interface Props {
     placeholder?: string
     onChange?: (value: string) => void
+    onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
     value: string
 }
 
 const TextField: FunctionComponent<Props> = ({
     onChange,
+    onKeyDown,
     placeholder,
     value,
 }) => {
-    const inputElement = useRef<HTMLInputElement>(null)
+    const inputElement = useRef<HTMLInputElement>()
 
     useEffect(() => {
         if (inputElement && inputElement.current) {
@@ -48,12 +47,17 @@ const TextField: FunctionComponent<Props> = ({
         onChange && onChange(e.currentTarget.value)
     }
 
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+        onKeyDown && onKeyDown(e)
+    }
+
     return (
         <Input
             onChange={handleChange}
             placeholder={placeholder}
-            value={value}
+            onKeyDown={handleKeyDown}
             ref={inputElement as any}
+            value={value}
         />
     )
 }

@@ -23,7 +23,16 @@ interface State {
 
 const defaultState: State = {
     suggestions: {
-        source: ['cat', 'catalonia', 'category', 'catfish', 'catamaran'],
+        source: [
+            'cam',
+            'camera',
+            'campaign',
+            'cat',
+            'catalonia',
+            'category',
+            'catfish',
+            'catamaran',
+        ],
     },
     value: '',
 }
@@ -55,7 +64,8 @@ export const getSuggestionsByValue = createSelector(
     (suggestions, value) =>
         suggestions.filter(
             (suggestion) =>
-                suggestion.includes(value.toLowerCase()) &&
-                suggestion !== value.toLocaleLowerCase(),
+                suggestion.includes(value && value.toLowerCase()) &&
+                suggestion !== value &&
+                value.toLocaleLowerCase(),
         ),
 )
