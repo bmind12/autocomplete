@@ -4,7 +4,7 @@ import {ThemeProvider} from 'styled-components'
 import {Provider} from 'react-redux'
 import store from 'store'
 
-import {mainTheme} from '../assets/theme'
+import {mainTheme} from 'assets/theme'
 
 import Autocomplete from 'components/containers/Autocomplete'
 
