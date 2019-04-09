@@ -6,25 +6,25 @@ Compatible with: `node v11.12.0` and `npm 6.7.0`
 
 ## Getting Started
 
-1. Clone the repo with:
+1. Clone the repo:
 
 `git clone git@github.com:bmind12/autocomplete.git`
 
-2. Install all the dependencies with:
+2. Install all the dependencies:
 
 `yarn install`
 
-3. Run the project with:
+3. Run the project:
 
 `yarn dev`
 
-4. `Project is running at http://localhost:8080/`
+4. Go to `http://localhost:8080/`
 
 5. Start typing `ca`
 
 ## Few more commands to entertain yourself
 
-- Run tests with:
+- Run tests:
 
 `yarn test`
 
