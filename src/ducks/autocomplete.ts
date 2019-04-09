@@ -1,6 +1,9 @@
-import {appName} from '../../config'
 import {Action} from 'redux'
-import actionCreatorFactory, {isType} from 'typescript-fsa'
+import {createSelector} from 'reselect'
+import {actionCreatorFactory, isType} from 'typescript-fsa'
+
+import {State as AppState} from 'store'
+import {appName} from '../../config'
 
 // Constants
 export const moduleName = 'autocomplete'
@@ -13,18 +16,16 @@ type Value = string
 
 interface State {
     suggestions: {
-        byId?: {
-            [key: string]: string[]
-        }
         source: string[]
     }
-    value?: Value
+    value: Value
 }
 
 const defaultState: State = {
     suggestions: {
-        source: ['cat', 'catalonia', 'category', 'catfish', 'cat'],
+        source: ['cat', 'catalonia', 'category', 'catfish', 'catamaran'],
     },
+    value: '',
 }
 
 // Reducer
@@ -43,3 +44,16 @@ export default function reducer(state = defaultState, action: Action): State {
 const actionCreator = actionCreatorFactory()
 
 export const updateValue = actionCreator<Value>(UPDATE)
+
+// Selectors
+export const getSuggestions = (state: AppState) =>
+    state.autocomplete.suggestions.source
+export const getInputValue = (state: AppState) => state.autocomplete.value
+
+export const getSuggestionsByValue = createSelector(
+    [getSuggestions, getInputValue],
+    (suggestions, value) =>
+        suggestions.filter((suggestion) =>
+            suggestion.includes(value.toLowerCase()),
+        ),
+)

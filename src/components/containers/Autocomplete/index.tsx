@@ -1,11 +1,19 @@
 import React, {Component} from 'react'
 import {bindActionCreators, Dispatch} from 'redux'
 import {connect} from 'react-redux'
+import {State} from 'store'
+
+import {
+    getSuggestionsByValue,
+    updateValue,
+    getInputValue,
+} from 'ducks/autocomplete'
 
 import {TextField} from 'components/ui/common'
-import {updateValue} from 'ducks/autocomplete'
+import Suggestions from 'components/ui/Suggestions'
 
-type Props = ReturnType<typeof mapDispatchToProps>
+type Props = ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps>
 
 class Autocomplete extends Component<Props> {
     handleUpdate = (value: string) => {
@@ -15,12 +23,25 @@ class Autocomplete extends Component<Props> {
     }
 
     render = () => {
+        const {suggestions, value} = this.props
+
         return (
-            <TextField
-                placeholder="Start typing"
-                onChange={this.handleUpdate}
-            />
+            <>
+                <TextField
+                    placeholder="Start typing cat..."
+                    onChange={this.handleUpdate}
+                    value={value}
+                />
+                {value.length >= 3 && <Suggestions suggestions={suggestions} />}
+            </>
         )
+    }
+}
+
+const mapStateToProps = (state: State) => {
+    return {
+        suggestions: getSuggestionsByValue(state),
+        value: getInputValue(state),
     }
 }
 
@@ -33,6 +54,6 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     )
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(Autocomplete)
