@@ -6,12 +6,12 @@ import store from 'store'
 
 import {mainTheme} from '../assets/theme'
 
-import App from 'components/containers/App/index'
+import Autocomplete from 'components/containers/Autocomplete'
 
 ReactDOM.render(
     <ThemeProvider theme={mainTheme}>
         <Provider store={store}>
-            <App />
+            <Autocomplete />
         </Provider>
     </ThemeProvider>,
     document.getElementById('root'),

@@ -1,6 +1,13 @@
 export const mainTheme = {
     palette: {
-        primary: 'grey',
-        secondary: 'yellow'
+        primary: '#3971a0',
+    },
+    text: {
+        size: {
+            default: '24px'
+        },
+    },
+    spacing: {
+        unit: 4
     }
 }
