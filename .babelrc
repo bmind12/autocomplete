@@ -13,7 +13,11 @@
             {
                 "root": ["./src"],
                 "alias": {
-                    "components": "./src/components"
+                    "assets": "./src/assets",
+                    "components": "./src/components",
+                    "ducks": "./src/ducks",
+                    "store": "./src/store",
+                    "utils": "./src/utils"
                 }
             }
         ]
