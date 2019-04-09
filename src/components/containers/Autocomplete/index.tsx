@@ -44,7 +44,11 @@ class Autocomplete extends Component<Props, State> {
             e.preventDefault()
         }
 
-        if (!areSuggestionsActive && (upPressed || downPressed)) {
+        if (
+            !areSuggestionsActive &&
+            suggestions.length > 0 &&
+            (upPressed || downPressed)
+        ) {
             this.toggleSuggestions()
             this.updateActiveSuggestion(upPressed ? suggestions.length - 1 : 0)
         } else if (areSuggestionsActive) {
@@ -66,8 +70,9 @@ class Autocomplete extends Component<Props, State> {
                 }
                 // right pressed
                 case 39: {
+                    updateValue(suggestions[activeSuggestion])
+                    this.toggleSuggestions()
                     this.updateActiveSuggestion(0)
-                    updateValue(suggestions && suggestions[activeSuggestion])
                     break
                 }
             }
