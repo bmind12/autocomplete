@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useState} from 'react'
+import React, {FunctionComponent, SyntheticEvent, useState} from 'react'
 import styled from 'styled-components'
 
 const Input = styled.input`
@@ -7,13 +7,18 @@ const Input = styled.input`
 
 type Props = {
     placeholder?: string
+    onChange?: (value: string) => void
 }
 
-const TextField = ({placeholder}: Props): JSX.Element => {
+const TextField: FunctionComponent<Props> = ({onChange, placeholder}) => {
     const [value, changeValue] = useState('')
 
     const handleChange = (e: SyntheticEvent<HTMLInputElement>): void => {
-        changeValue(e.currentTarget.value)
+        const value = e.currentTarget.value
+
+        changeValue(value)
+
+        onChange && onChange(value)
     }
 
     return (

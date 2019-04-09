@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 
-import {TextField} from 'components/ui/common'
+import Autocomplete from 'components/containers/Autocomplete'
 
 const Container = styled.div`
     display: flex;
@@ -13,7 +13,7 @@ class App extends Component {
     render = () => {
         return (
             <Container>
-                <TextField placeholder="Start typing" />
+                <Autocomplete />
             </Container>
         )
     }
