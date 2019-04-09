@@ -53,7 +53,9 @@ export const getInputValue = (state: AppState) => state.autocomplete.value
 export const getSuggestionsByValue = createSelector(
     [getSuggestions, getInputValue],
     (suggestions, value) =>
-        suggestions.filter((suggestion) =>
-            suggestion.includes(value.toLowerCase()),
+        suggestions.filter(
+            (suggestion) =>
+                suggestion.includes(value.toLowerCase()) &&
+                suggestion !== value.toLocaleLowerCase(),
         ),
 )

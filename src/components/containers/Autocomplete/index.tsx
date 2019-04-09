@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import styled from 'styled-components'
 import {bindActionCreators, Dispatch} from 'redux'
 import {connect} from 'react-redux'
 import {State} from 'store'
@@ -11,6 +12,13 @@ import {
 
 import {TextField} from 'components/ui/common'
 import Suggestions from 'components/ui/Suggestions'
+
+const Note = styled.p`
+    font-size: ${(props) => props.theme.text.size.note};
+    padding-left: ${(props) => props.theme.spacing.unit}px;
+    margin: ${(props) => props.theme.spacing.unit}px
+        ${(props) => props.theme.spacing.unit * 3}px;
+`
 
 type Props = ReturnType<typeof mapStateToProps> &
     ReturnType<typeof mapDispatchToProps>
@@ -32,7 +40,12 @@ class Autocomplete extends Component<Props> {
                     onChange={this.handleUpdate}
                     value={value}
                 />
-                {value.length >= 3 && <Suggestions suggestions={suggestions} />}
+                {suggestions.length > 0 && value.length >= 3 && (
+                    <>
+                        <Note>Press ↓ to select suggestion</Note>
+                        <Suggestions suggestions={suggestions} />
+                    </>
+                )}
             </>
         )
     }
